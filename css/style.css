@@ -107,7 +107,7 @@ h1, h2, h3, h4, p { margin: 0; }
 .nav a:hover { color: var(--ink); }
 .header-cta { display: flex; align-items: center; gap: 10px; }
 .header-cta .ytlink { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 700; color: var(--ink-2); padding: 0 8px; }
-.header-cta .ytlink svg { width: 20px; height: 20px; }
+.header-cta .ytlink svg { width: 24px; height: 24px; color: #ff0000; }
 .burger { display: none; width: 44px; height: 44px; align-items: center; justify-content: center; }
 .burger span { display: block; width: 22px; height: 2px; background: var(--ink); position: relative; transition: 0.3s; }
 .burger span::before, .burger span::after { content: ""; position: absolute; left: 0; width: 22px; height: 2px; background: var(--ink); transition: 0.3s; }
