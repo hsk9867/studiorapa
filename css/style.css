@@ -679,3 +679,22 @@ h1, h2, h3, h4, p { margin: 0; }
   .tabs::-webkit-scrollbar { display: none; }
   .tabs button { flex: none; padding: 6px 12px; font-size: 12.5px; white-space: nowrap; }
 }
+
+/* 진행 과정 안정화: 높이 고정 + 모바일 알약 탭 */
+.flowx-list { justify-content: flex-start; gap: 8px; }
+.fx-s, .flowx-cap { display: none; }
+@media (max-width: 860px) {
+  .flowx { gap: 12px; }
+  .flowx-cap { display: block; order: 2; min-height: 92px; padding: 14px 16px; border-radius: 14px; background: #fff; box-shadow: 0 8px 24px rgba(31, 77, 44, 0.08); }
+  .fc-t { font-family: var(--font-display); font-weight: 700; font-size: 16px; letter-spacing: -0.02em; }
+  .fc-d { margin-top: 6px; font-size: 13.5px; line-height: 1.6; color: var(--ink-2); }
+  .flowx-list { order: 3; display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; }
+  .flowx-list li button { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 10px 4px 12px; background: rgba(255, 255, 255, 0.55); box-shadow: none; }
+  .flowx-list li.on button { background: var(--ink); box-shadow: none; }
+  .fx-n, .fx-t, .fx-d { display: none; }
+  .fx-s { display: flex; flex-direction: column; align-items: center; gap: 3px; font-size: 12px; font-weight: 800; color: var(--ink-2); }
+  .fx-s b { width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center; font-family: var(--font-en); font-size: 11px; background: #fff; color: var(--forest); }
+  .flowx-list li.on .fx-s { color: #fff; }
+  .flowx-list li.on .fx-s b { background: var(--accent); color: var(--accent-ink); }
+  .fx-bar { left: 8px; right: 8px; bottom: 5px; height: 2px; background: rgba(255, 255, 255, 0.18); }
+}

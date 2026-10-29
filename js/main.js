@@ -119,13 +119,21 @@
     var fxItems = flowx.querySelectorAll('.flowx-list li');
     var fxImgs = flowx.querySelectorAll('.flowx-media img');
     var fxCur = 0, fxTimer = null, FX_MS = 4500;
+    var fxCapT = flowx.querySelector('.fc-t'), fxCapD = flowx.querySelector('.fc-d');
     function fxShow(i) {
       fxCur = i;
-      fxItems.forEach(function (li, k) { li.classList.toggle('on', k === i); });
+      fxItems.forEach(function (li, k) {
+        li.classList.remove('on');
+        if (k === i) { void li.offsetWidth; li.classList.add('on'); }
+      });
       fxImgs.forEach(function (im, k) { im.classList.toggle('on', k === i); });
+      var li = fxItems[i];
+      if (fxCapT) fxCapT.textContent = li.querySelector('.fx-n').textContent + ' · ' + li.querySelector('.fx-t').textContent;
+      if (fxCapD) fxCapD.textContent = li.querySelector('.fx-d').textContent;
     }
     function fxStart() {
       if (reduce || fxTimer) return;
+      fxShow(fxCur);
       fxTimer = window.setInterval(function () { fxShow((fxCur + 1) % fxItems.length); }, FX_MS);
     }
     function fxStop() { if (fxTimer) { window.clearInterval(fxTimer); fxTimer = null; } }
