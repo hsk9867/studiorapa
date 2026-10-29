@@ -581,7 +581,7 @@ h1, h2, h3, h4, p { margin: 0; }
   transition-delay: calc(var(--i, 0) * 70ms);
 }
 .split.in .wi { transform: none; opacity: 1; filter: none; }
-.hero h1 em .wi { background: linear-gradient(100deg, var(--accent) 0%, #f0ffe4 45%, var(--accent) 60%, #7fdc5b 100%); background-size: 220% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; animation: shine 4.5s ease-in-out infinite; }
+.hero h1 em .wi { color: var(--accent); }
 @keyframes shine { 0%, 100% { background-position: 100% 0; } 50% { background-position: 0% 0; } }
 .hero-stat.reveal { transform: translateY(40px) scale(0.86); transform-origin: 0% 100%; filter: blur(8px); transition: opacity 0.8s ease, transform 1.2s cubic-bezier(0.22, 1.35, 0.36, 1), filter 0.9s ease; transition-delay: 0.45s; }
 .hero-stat.reveal.in { transform: none; filter: none; }
@@ -609,3 +609,8 @@ h1, h2, h3, h4, p { margin: 0; }
   .hero-cta { flex-wrap: nowrap; gap: 8px; margin-top: 26px; }
   .hero-cta .btn { flex: 0 0 auto; min-height: 44px; padding: 0 18px; font-size: 14px; }
 }
+
+/* 제목 포인트 */
+.h2 .mark { padding: 0 0.06em; background-image: linear-gradient(transparent 62%, var(--accent) 62%, var(--accent) 94%, transparent 94%); }
+.section.soft .h2 .mark, #process .h2 .mark { color: var(--forest); }
+.dark .h2 .mark { background: none; color: var(--accent); }
