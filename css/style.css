@@ -114,7 +114,7 @@ h1, h2, h3, h4, p { margin: 0; }
   position: absolute; inset: -14% -6% -14% 30%; z-index: 0;
   display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px;
   transform: perspective(1400px) rotateY(-16deg) rotateX(4deg) scale(1.08);
-  opacity: 0.34; filter: saturate(0.4) contrast(1.05);
+  opacity: 0.5; filter: saturate(0.65) contrast(1.05);
   pointer-events: none;
 }
 .wall-col { overflow: hidden; height: 100%; }
@@ -128,8 +128,8 @@ h1, h2, h3, h4, p { margin: 0; }
 .hero::before {
   content: ""; position: absolute; inset: 0; z-index: 1;
   background:
-    linear-gradient(90deg, var(--dark) 28%, rgba(13, 13, 13, 0.55) 60%, rgba(13, 13, 13, 0.25) 100%),
-    linear-gradient(180deg, rgba(13, 13, 13, 0.2) 0%, rgba(13, 13, 13, 0) 40%, var(--dark) 100%);
+    linear-gradient(90deg, rgba(13, 13, 13, 0.92) 22%, rgba(13, 13, 13, 0.45) 55%, rgba(13, 13, 13, 0.15) 100%),
+    linear-gradient(180deg, rgba(13, 13, 13, 0.1) 0%, rgba(13, 13, 13, 0) 45%, rgba(13, 13, 13, 0.9) 100%);
 }
 .hero .wrap { position: relative; z-index: 2; width: 100%; padding-top: clamp(64px, 9vw, 110px); padding-bottom: clamp(56px, 7vw, 90px); }
 .hero-grid { display: grid; grid-template-columns: 1fr; }
@@ -431,11 +431,12 @@ h1, h2, h3, h4, p { margin: 0; }
   .menu-open .mobile-nav { display: flex; }
   .mobile-nav a { font-size: 22px; font-weight: 800; padding: 14px 0; border-bottom: 1px solid var(--line); letter-spacing: -0.02em; }
   .mobile-nav .btn { margin-top: 24px; }
-  .hero { min-height: auto; }
+  .hero { min-height: calc(100dvh - 72px); align-items: center; }
+  .hero .wrap { padding-top: 48px; padding-bottom: 72px; }
   .hero-grid { grid-template-columns: 1fr; gap: 40px; }
-  .hero-wall { inset: -10% -30% -10% -10%; grid-template-columns: repeat(3, 1fr); opacity: 0.22; transform: perspective(1000px) rotateY(-10deg) scale(1.1); }
+  .hero-wall { inset: -8% -28% -8% -12%; grid-template-columns: repeat(3, 1fr); opacity: 0.42; transform: perspective(1000px) rotateY(-8deg) scale(1.12); }
   .wall-col:nth-child(4) { display: none; }
-  .hero::before { background: linear-gradient(180deg, rgba(13, 13, 13, 0.35) 0%, var(--dark) 55%); }
+  .hero::before { background: linear-gradient(180deg, rgba(13, 13, 13, 0.15) 0%, rgba(13, 13, 13, 0.45) 40%, rgba(13, 13, 13, 0.82) 70%, var(--dark) 100%); }
   .hero-side p { margin-top: 18px; }
   /* 결과 섹션: 한 화면에 들어오는 컴팩트 레이아웃 */
   .results { padding: 56px 0 48px; }
