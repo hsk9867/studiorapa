@@ -85,21 +85,6 @@
     requestAnimationFrame(step);
   }
 
-  /* 히어로 제작 흐름 카드: 단계 자동 순환 */
-  var loopItems = document.querySelectorAll('.loop li');
-  var loopBar = document.querySelector('.loop-bar i');
-  if (loopItems.length && !reduce) {
-    var li = 0;
-    function tickLoop() {
-      loopItems.forEach(function (x, i) { x.classList.toggle('on', i === li); });
-      if (loopBar) { loopBar.style.transition = 'none'; loopBar.style.width = '0'; void loopBar.offsetWidth; loopBar.style.transition = ''; loopBar.style.width = '100%'; }
-      li = (li + 1) % loopItems.length;
-    }
-    tickLoop();
-    window.setInterval(tickLoop, 1900);
-  } else {
-    loopItems.forEach(function (x) { x.classList.add('on'); });
-  }
   if ('IntersectionObserver' in window) {
     var cio = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) { if (e.isIntersecting) { runCount(e.target); cio.unobserve(e.target); } });
