@@ -634,3 +634,48 @@ h1, h2, h3, h4, p { margin: 0; }
   .shorts .phones { order: 1; margin-top: 28px; }
   .shorts .types { order: 2; }
 }
+
+/* ===== 진행 과정: 단계 목록 + 사진 한 화면 ===== */
+#process { padding: clamp(72px, 8vw, 110px) 0; }
+.flowx { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.95fr); gap: clamp(24px, 3vw, 44px); margin-top: 40px; align-items: stretch; }
+.flowx-media { position: relative; border-radius: var(--radius); overflow: hidden; aspect-ratio: 3 / 2; background: #dfe9d8; box-shadow: 0 24px 60px rgba(31, 77, 44, 0.16); }
+.flowx-media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transform: scale(1.06); transition: opacity 0.7s ease, transform 1.4s var(--ease); }
+.flowx-media img.on { opacity: 1; transform: none; }
+.flowx-list { display: flex; flex-direction: column; justify-content: space-between; gap: 6px; }
+.flowx-list li button { width: 100%; text-align: left; display: grid; grid-template-columns: 64px 1fr; column-gap: 12px; align-items: center; padding: 14px 18px 16px; border-radius: 14px; position: relative; overflow: hidden; transition: background 0.3s, box-shadow 0.3s; }
+.flowx-list li button:hover { background: rgba(255, 255, 255, 0.6); }
+.fx-n { font-family: var(--font-en); font-size: 12px; font-weight: 800; color: var(--forest-2); letter-spacing: 0.02em; }
+.fx-t { font-family: var(--font-display); font-weight: 700; font-size: 18px; letter-spacing: -0.02em; color: var(--ink-2); transition: color 0.3s; }
+.fx-d { grid-column: 2; font-size: 14px; color: var(--ink-2); line-height: 1.65; max-height: 0; opacity: 0; overflow: hidden; transition: max-height 0.5s var(--ease), opacity 0.4s, margin 0.4s; }
+.fx-bar { position: absolute; left: 18px; right: 18px; bottom: 8px; height: 3px; border-radius: 999px; background: rgba(31, 77, 44, 0.12); opacity: 0; }
+.fx-bar i { display: block; height: 100%; width: 0; border-radius: inherit; background: var(--accent); }
+.flowx-list li.on button { background: #fff; box-shadow: 0 10px 30px rgba(31, 77, 44, 0.1); }
+.flowx-list li.on .fx-t { color: var(--ink); }
+.flowx-list li.on .fx-d { max-height: 80px; opacity: 1; margin-top: 6px; }
+.flowx-list li.on .fx-bar { opacity: 1; }
+.flowx-list li.on .fx-bar i { animation: fxfill var(--fx-dur, 4.5s) linear forwards; }
+.flowx.paused .fx-bar { display: none; }
+@keyframes fxfill { from { width: 0; } to { width: 100%; } }
+.owner { margin-top: 48px; padding-top: 32px; }
+@media (max-width: 860px) {
+  .flowx { grid-template-columns: 1fr; gap: 14px; margin-top: 24px; }
+  .flowx-media { aspect-ratio: 16 / 10; }
+  .flowx-list { gap: 4px; }
+  .flowx-list li button { grid-template-columns: 54px 1fr; padding: 11px 14px 13px; }
+  .fx-t { font-size: 16px; }
+  .fx-d { font-size: 13px; }
+  .owner { margin-top: 32px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .flowx-media img { transition: none; transform: none; }
+  .fx-bar { display: none; }
+}
+
+/* 포트폴리오 탭 버튼 축소 */
+.tabs { gap: 6px; margin-top: 32px; }
+.tabs button { padding: 8px 14px; font-size: 13px; }
+@media (max-width: 860px) {
+  .tabs { flex-wrap: nowrap; overflow-x: auto; margin: 22px calc(-1 * var(--gutter)) 0; padding: 0 var(--gutter) 4px; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+  .tabs::-webkit-scrollbar { display: none; }
+  .tabs button { flex: none; padding: 6px 12px; font-size: 12.5px; white-space: nowrap; }
+}

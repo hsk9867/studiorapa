@@ -113,6 +113,36 @@
   }
   applyFilter('all');
 
+  /* 진행 과정 단계 탭 */
+  var flowx = document.querySelector('.flowx');
+  if (flowx) {
+    var fxItems = flowx.querySelectorAll('.flowx-list li');
+    var fxImgs = flowx.querySelectorAll('.flowx-media img');
+    var fxCur = 0, fxTimer = null, FX_MS = 4500;
+    function fxShow(i) {
+      fxCur = i;
+      fxItems.forEach(function (li, k) { li.classList.toggle('on', k === i); });
+      fxImgs.forEach(function (im, k) { im.classList.toggle('on', k === i); });
+    }
+    function fxStart() {
+      if (reduce || fxTimer) return;
+      fxTimer = window.setInterval(function () { fxShow((fxCur + 1) % fxItems.length); }, FX_MS);
+    }
+    function fxStop() { if (fxTimer) { window.clearInterval(fxTimer); fxTimer = null; } }
+    flowx.style.setProperty('--fx-dur', FX_MS + 'ms');
+    if (reduce) flowx.classList.add('paused');
+    fxItems.forEach(function (li, k) {
+      li.querySelector('button').addEventListener('click', function () {
+        fxStop(); flowx.classList.add('paused'); fxShow(k);
+      });
+    });
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (es) {
+        es.forEach(function (e) { if (e.isIntersecting && !flowx.classList.contains('paused')) fxStart(); else fxStop(); });
+      }, { threshold: 0.4 }).observe(flowx);
+    } else { fxStart(); }
+  }
+
   /* 유튜브 지연 로딩 */
   document.querySelectorAll('.yt[data-id]').forEach(function (box) {
     function play() {
