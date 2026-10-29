@@ -595,3 +595,17 @@ h1, h2, h3, h4, p { margin: 0; }
   .split .wi, .hero-stat.reveal, .label.reveal { transform: none; opacity: 1; filter: none; transition: none; }
   .label.in::after { animation: none; }
 }
+
+/* ===== 히어로 크기 조정 ===== */
+.hero h1 { font-size: clamp(28px, 3.8vw, 50px); }
+.hero-stat .num { font-size: clamp(60px, 9.5vw, 136px); }
+.hero-stat .unit { font-size: clamp(18px, 2.4vw, 32px); }
+@media (max-width: 860px) {
+  .hero-eyebrow { font-size: 12px; margin-bottom: 14px; }
+  .hero h1 { font-size: 26px; line-height: 1.3; }
+  .hero-stat { margin-top: 22px; gap: 8px; }
+  .hero-stat .num { font-size: 60px; }
+  .hero-stat .unit { font-size: 18px; }
+  .hero-cta { flex-wrap: nowrap; gap: 8px; margin-top: 26px; }
+  .hero-cta .btn { flex: 0 0 auto; min-height: 44px; padding: 0 18px; font-size: 14px; }
+}
