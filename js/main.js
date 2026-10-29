@@ -15,8 +15,46 @@
     });
   }
 
+  /* 히어로 썸네일 월: 트랙 복제로 무한 스크롤 */
+  document.querySelectorAll('.wall-track').forEach(function (t) {
+    var kids = Array.prototype.slice.call(t.children);
+    kids.forEach(function (k) { t.appendChild(k.cloneNode(true)); });
+  });
+
+  /* 제목 단어 분리 (타이포그래피 리빌) */
+  function splitWords(el) {
+    var idx = 0;
+    function walk(node) {
+      Array.prototype.slice.call(node.childNodes).forEach(function (n) {
+        if (n.nodeType === 3) {
+          var parts = n.textContent.split(/(\s+)/);
+          var frag = document.createDocumentFragment();
+          parts.forEach(function (p) {
+            if (!p) return;
+            if (/^\s+$/.test(p)) { frag.appendChild(document.createTextNode(' ')); return; }
+            var w = document.createElement('span'); w.className = 'w';
+            var wi = document.createElement('span'); wi.className = 'wi'; wi.textContent = p; wi.style.setProperty('--i', idx++);
+            w.appendChild(wi); frag.appendChild(w);
+          });
+          node.replaceChild(frag, n);
+        } else if (n.nodeType === 1 && n.tagName !== 'BR') {
+          walk(n);
+        }
+      });
+    }
+    walk(el);
+    el.classList.add('split');
+    el.classList.remove('reveal');
+  }
+  var heads = document.querySelectorAll('.hero h1, .h2, .case h3, .owner h3');
+  if (!reduce) { heads.forEach(splitWords); }
+
+  /* 히어로 등장 */
+  var heroBits = document.querySelectorAll('.hero .reveal, .hero .split');
+  window.setTimeout(function () { heroBits.forEach(function (el) { el.classList.add('in'); }); }, 80);
+
   /* 스크롤 리빌 */
-  var reveals = document.querySelectorAll('.reveal');
+  var reveals = document.querySelectorAll('.reveal:not(.hero *), .split:not(.hero *)');
   if (reduce || !('IntersectionObserver' in window)) {
     reveals.forEach(function (el) { el.classList.add('in'); });
   } else {
