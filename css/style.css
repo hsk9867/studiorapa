@@ -431,11 +431,22 @@ h1, h2, h3, h4, p { margin: 0; }
   .wall-col:nth-child(4) { display: none; }
   .hero::before { background: linear-gradient(180deg, rgba(13, 13, 13, 0.35) 0%, var(--dark) 55%); }
   .hero-side p { margin-top: 18px; }
-  .bento { grid-template-columns: 1fr; }
-  .tile-green { grid-row: auto; min-height: 300px; }
-  .tile-chart { grid-column: auto; }
-  .bars li { grid-template-columns: 96px 1fr 30px; font-size: 13px; }
-  .tile { padding: 26px 22px 24px; min-height: 200px; }
+  /* 결과 섹션: 한 화면에 들어오는 컴팩트 레이아웃 */
+  .results { padding: 56px 0 48px; }
+  .results::before { width: 70vw; height: 70vw; right: -25%; top: -10%; }
+  .results .lead { display: none; }
+  .bento { grid-template-columns: repeat(3, 1fr); grid-template-rows: auto auto; gap: 8px; margin-top: 26px; }
+  .tile { min-height: 0; padding: 14px 12px 12px; }
+  .tile-cap { font-size: 11px; line-height: 1.3; }
+  .tile-num, .tile-green .tile-num { font-size: 34px; margin-top: 10px; letter-spacing: -0.04em; }
+  .tile-num small { font-size: 0.45em; }
+  .tile-sub, .tile-green .orb, .tile-green .tile-play, .spark, .chips { display: none; }
+  .tile-green { grid-row: auto; min-height: 0; }
+  .tile-chart { grid-column: 1 / -1; padding: 14px 14px 12px; }
+  .bars { gap: 7px; margin-top: 10px; }
+  .bars li { grid-template-columns: 86px 1fr 24px; gap: 8px; font-size: 12px; }
+  .bar { height: 8px; }
+  .results .foot-note { font-size: 11px; margin-top: 14px; }
   .grid-videos { grid-template-columns: repeat(2, 1fr); gap: 24px 14px; }
   .case, .case.flip { grid-template-columns: 1fr; }
   .case.flip .case-media { order: 0; }
