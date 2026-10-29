@@ -430,9 +430,12 @@ h1, h2, h3, h4, p { margin: 0; }
   .header-cta .ytlink { display: inline-flex; align-items: center; gap: 7px; min-height: 42px; padding: 0 16px 0 12px; border-radius: 999px; background: #fff; border: 1px solid #e5e5e5; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06); font-size: 14px; font-weight: 800; color: #0f0f0f; }
   .header-cta .ytlink svg { width: 26px; height: 26px; color: #ff0000; }
   .burger { display: flex; }
-  .mobile-nav { display: none; position: fixed; top: 72px; left: 0; right: 0; bottom: 0; background: #fff; z-index: 49; padding: 24px var(--gutter); flex-direction: column; gap: 4px; overflow: auto; }
+  .mobile-nav { display: none; position: absolute; top: 100%; left: 0; right: 0; height: calc(100dvh - 72px); background: #fff; z-index: 49; padding: 12px var(--gutter) 32px; flex-direction: column; gap: 0; overflow-y: auto; border-top: 1px solid var(--line); }
   .menu-open .mobile-nav { display: flex; }
-  .mobile-nav a { font-size: 22px; font-weight: 800; padding: 14px 0; border-bottom: 1px solid var(--line); letter-spacing: -0.02em; }
+  .mobile-nav a { font-family: var(--font-display); font-size: 20px; font-weight: 700; padding: 16px 0; border-bottom: 1px solid var(--line); letter-spacing: -0.02em; }
+  .mobile-nav a.btn { border-bottom: 0; justify-content: center; color: var(--accent-ink); font-family: var(--font-body); font-size: 16px; }
+  body.menu-open { overflow: hidden; }
+  body.menu-open .float-cta { display: none; }
   .mobile-nav .btn { margin-top: 24px; }
   .hero { min-height: calc(100dvh - 72px); align-items: center; }
   .hero .wrap { padding-top: 48px; padding-bottom: 72px; }
@@ -614,3 +617,20 @@ h1, h2, h3, h4, p { margin: 0; }
 .h2 .mark { padding: 0 0.06em; background-image: linear-gradient(transparent 62%, var(--accent) 62%, var(--accent) 94%, transparent 94%); }
 .section.soft .h2 .mark, #process .h2 .mark { color: var(--forest); }
 .dark .h2 .mark { background: none; color: var(--accent); }
+
+/* 모바일: 사례 태그를 영상 위로 */
+@media (max-width: 860px) {
+  .case, .case.flip { gap: 0; }
+  .case > div:not(.case-media) { display: contents; }
+  .case .case-tag { order: -2; justify-self: start; margin-bottom: 14px; }
+  .case .case-media { order: -1; margin-bottom: 24px; }
+}
+/* 포트폴리오 전체 보기 12개 제한 */
+.vcard.over { display: none; }
+/* 모바일: 숏폼 문구 아래 영상 */
+@media (max-width: 860px) {
+  .shorts { gap: 0; }
+  .shorts > div:not(.phones) { display: contents; }
+  .shorts .phones { order: 1; margin-top: 28px; }
+  .shorts .types { order: 2; }
+}

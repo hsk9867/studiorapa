@@ -102,11 +102,16 @@
       tabs.forEach(function (b) { b.classList.remove('on'); });
       btn.classList.add('on');
       var f = btn.getAttribute('data-filter');
-      cards.forEach(function (c) {
-        c.classList.toggle('hide', f !== 'all' && c.getAttribute('data-cat') !== f);
-      });
+      applyFilter(f);
     });
   });
+  function applyFilter(f) {
+    cards.forEach(function (c, i) {
+      c.classList.toggle('hide', f !== 'all' && c.getAttribute('data-cat') !== f);
+      c.classList.toggle('over', f === 'all' && i >= 12);
+    });
+  }
+  applyFilter('all');
 
   /* 유튜브 지연 로딩 */
   document.querySelectorAll('.yt[data-id]').forEach(function (box) {
