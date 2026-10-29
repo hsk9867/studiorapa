@@ -583,13 +583,13 @@ h1, h2, h3, h4, p { margin: 0; }
 @keyframes shine { 0%, 100% { background-position: 100% 0; } 50% { background-position: 0% 0; } }
 .hero-stat.reveal { transform: translateY(40px) scale(0.86); transform-origin: 0% 100%; filter: blur(8px); transition: opacity 0.8s ease, transform 1.2s cubic-bezier(0.22, 1.35, 0.36, 1), filter 0.9s ease; transition-delay: 0.45s; }
 .hero-stat.reveal.in { transform: none; filter: none; }
-.hero-stat .num { display: inline-block; background: linear-gradient(180deg, #fff 55%, rgba(255, 255, 255, 0.55) 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.hero-stat .num { display: inline-block; background: linear-gradient(100deg, var(--accent) 0%, #f0ffe4 45%, var(--accent) 60%, #7fdc5b 100%); background-size: 220% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; animation: shine 4.5s ease-in-out infinite; }
 .label.reveal { transform: translateX(-24px); }
 .label.reveal.in { transform: none; }
 .label.in::after { animation: grow 0.9s var(--ease) both 0.2s; transform-origin: left; }
 @keyframes grow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
 @media (prefers-reduced-motion: reduce) {
-  .hero h1 em .wi { animation: none; }
+  .hero h1 em .wi, .hero-stat .num { animation: none; }
   .split .wi, .hero-stat.reveal, .label.reveal { transform: none; opacity: 1; filter: none; transition: none; }
   .label.in::after { animation: none; }
 }
