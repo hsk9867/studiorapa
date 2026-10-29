@@ -426,7 +426,9 @@ h1, h2, h3, h4, p { margin: 0; }
   .hero-wall { inset: -12% -10% -12% 15%; }
 }
 @media (max-width: 860px) {
-  .nav, .header-cta .ytlink { display: none; }
+  .nav, .header-cta .btn.accent { display: none; }
+  .header-cta .ytlink { display: inline-flex; align-items: center; gap: 7px; min-height: 42px; padding: 0 16px 0 12px; border-radius: 999px; background: #fff; border: 1px solid #e5e5e5; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06); font-size: 14px; font-weight: 800; color: #0f0f0f; }
+  .header-cta .ytlink svg { width: 26px; height: 26px; color: #ff0000; }
   .burger { display: flex; }
   .mobile-nav { display: none; position: fixed; top: 72px; left: 0; right: 0; bottom: 0; background: #fff; z-index: 49; padding: 24px var(--gutter); flex-direction: column; gap: 4px; overflow: auto; }
   .menu-open .mobile-nav { display: flex; }
