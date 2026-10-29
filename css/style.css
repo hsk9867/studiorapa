@@ -93,8 +93,8 @@ h1, h2, h3, h4, p { margin: 0; }
 .nav a { font-size: 15px; font-weight: 600; color: var(--ink-2); transition: color 0.2s; }
 .nav a:hover { color: var(--ink); }
 .header-cta { display: flex; align-items: center; gap: 10px; }
-.header-cta .yt { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 700; color: var(--ink-2); padding: 0 8px; }
-.header-cta .yt svg { width: 20px; height: 20px; }
+.header-cta .ytlink { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 700; color: var(--ink-2); padding: 0 8px; }
+.header-cta .ytlink svg { width: 20px; height: 20px; }
 .burger { display: none; width: 44px; height: 44px; align-items: center; justify-content: center; }
 .burger span { display: block; width: 22px; height: 2px; background: var(--ink); position: relative; transition: 0.3s; }
 .burger span::before, .burger span::after { content: ""; position: absolute; left: 0; width: 22px; height: 2px; background: var(--ink); transition: 0.3s; }
@@ -144,14 +144,20 @@ h1, h2, h3, h4, p { margin: 0; }
 .hero-stat .unit { font-size: clamp(22px, 3vw, 40px); font-weight: 800; letter-spacing: -0.03em; }
 .hero-stat .desc { flex-basis: 100%; margin-top: 14px; font-size: 14px; color: var(--dark-muted); }
 .hero-cta { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 34px; }
-.hero-side { padding-bottom: 8px; }
-.flow { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; }
-.flow li { position: relative; padding-top: 14px; font-size: 13px; font-weight: 600; color: var(--dark-muted); }
-.flow li::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 2px; background: rgba(255, 255, 255, 0.22); }
-.flow li.on::before { background: var(--accent); }
-.flow li.on { color: #fff; }
-.hero-side p { margin-top: 24px; font-size: 15px; line-height: 1.75; color: rgba(255, 255, 255, 0.82); }
-.hero-side small { display: block; margin-top: 12px; font-size: 13px; color: var(--dark-muted); }
+.hero-side { padding-bottom: 8px; max-width: 420px; justify-self: end; width: 100%; }
+.loop-card { position: relative; padding: 20px 22px 18px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.14); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-radius: 16px; overflow: hidden; }
+.loop-head { display: flex; justify-content: space-between; align-items: center; font-size: 13px; font-weight: 700; color: var(--dark-muted); margin-bottom: 6px; }
+.loop-head b { font-size: 11px; letter-spacing: 0.1em; color: var(--accent-ink); background: var(--accent); padding: 4px 8px; border-radius: 999px; }
+.loop li { display: grid; grid-template-columns: 30px 1fr; gap: 14px; align-items: center; padding: 11px 0; border-top: 1px dashed rgba(255, 255, 255, 0.14); transition: opacity 0.4s; opacity: 0.55; }
+.loop li:first-child { border-top: 0; }
+.loop li.on { opacity: 1; }
+.loop .ld { width: 30px; height: 30px; border-radius: 50%; border: 1px solid rgba(255, 255, 255, 0.35); display: grid; place-items: center; font-size: 12px; font-weight: 800; transition: background 0.4s, color 0.4s, box-shadow 0.4s, transform 0.4s var(--ease); }
+.loop li.on .ld { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); box-shadow: 0 0 0 6px rgba(171, 247, 131, 0.18); transform: scale(1.06); }
+.loop strong { display: block; font-size: 15px; font-weight: 800; letter-spacing: -0.01em; }
+.loop em { display: block; font-style: normal; font-size: 12px; color: var(--dark-muted); margin-top: 2px; }
+.loop-bar { position: absolute; left: 0; right: 0; bottom: 0; height: 3px; background: rgba(255, 255, 255, 0.1); }
+.loop-bar i { display: block; height: 100%; width: 0; background: var(--accent); transition: width 1.9s linear; }
+.hero-side small { display: block; margin-top: 12px; font-size: 13px; color: var(--dark-muted); text-align: right; }
 
 /* 01 결과 (벤토) */
 .results { position: relative; overflow: hidden; }
@@ -382,7 +388,7 @@ h1, h2, h3, h4, p { margin: 0; }
 .float-cta a:hover { transform: translateY(-2px); box-shadow: 0 14px 32px rgba(0, 0, 0, 0.28); }
 .float-cta a:active { transform: translateY(0) scale(0.98); }
 .float-cta svg { width: 20px; height: 20px; flex: none; }
-.float-cta .fc-mail { background: var(--ink); color: #fff; border: 1px solid rgba(255, 255, 255, 0.15); }
+.float-cta .fc-mail { background: #fff; color: var(--ink); border: 1px solid rgba(10, 10, 10, 0.12); }
 .float-cta .fc-ask { background: var(--accent); color: var(--accent-ink); }
 
 /* 타이포그래피 리빌 */
@@ -419,7 +425,7 @@ h1, h2, h3, h4, p { margin: 0; }
   .hero-wall { inset: -12% -10% -12% 15%; }
 }
 @media (max-width: 860px) {
-  .nav, .header-cta .yt { display: none; }
+  .nav, .header-cta .ytlink { display: none; }
   .burger { display: flex; }
   .mobile-nav { display: none; position: fixed; top: 72px; left: 0; right: 0; bottom: 0; background: #fff; z-index: 49; padding: 24px var(--gutter); flex-direction: column; gap: 4px; overflow: auto; }
   .menu-open .mobile-nav { display: flex; }
@@ -455,8 +461,12 @@ h1, h2, h3, h4, p { margin: 0; }
   .shorts { grid-template-columns: 1fr; }
   .phones { max-width: 420px; }
   .steps { grid-template-columns: 1fr 1fr; }
-  .photos { grid-template-columns: 1fr 1fr; }
-  .photos img:first-child { grid-column: 1 / -1; }
+  #process .wrap { display: flex; flex-direction: column; }
+  #process .photos { order: 1; display: flex; gap: 10px; margin: 28px calc(-1 * var(--gutter)) 0; padding: 0 var(--gutter); overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+  #process .photos::-webkit-scrollbar { display: none; }
+  #process .photos img, #process .photos img:first-child { flex: 0 0 76%; aspect-ratio: 16 / 10; scroll-snap-align: start; }
+  #process .steps { order: 2; margin-top: 36px; }
+  #process .owner { order: 3; }
   .owner { grid-template-columns: 1fr; gap: 24px; }
   .plans { grid-template-columns: 1fr; }
   .plan.hot { order: -1; }
@@ -479,5 +489,6 @@ h1, h2, h3, h4, p { margin: 0; }
   .mini-stats { gap: 20px; }
   .mini-stats b { font-size: 28px; }
   .hero-cta .btn { flex: 1; }
-  .flow li { font-size: 11px; }
+  .hero-side { max-width: none; justify-self: stretch; }
+  .hero-side small { text-align: left; }
 }

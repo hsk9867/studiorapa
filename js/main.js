@@ -71,16 +71,34 @@
   function runCount(el) {
     var target = parseFloat(el.getAttribute('data-count'));
     var dec = parseInt(el.getAttribute('data-decimal') || '0', 10);
-    if (reduce) { el.textContent = target.toFixed(dec); return; }
+    var comma = el.hasAttribute('data-comma');
+    function fmt(v) { return comma ? Math.round(v).toLocaleString('ko-KR') : v.toFixed(dec); }
+    if (reduce) { el.textContent = fmt(target); return; }
     var start = null, dur = 1400;
     function step(ts) {
       if (!start) start = ts;
       var p = Math.min((ts - start) / dur, 1);
       var eased = 1 - Math.pow(1 - p, 3);
-      el.textContent = (target * eased).toFixed(dec);
-      if (p < 1) requestAnimationFrame(step); else el.textContent = target.toFixed(dec);
+      el.textContent = fmt(target * eased);
+      if (p < 1) requestAnimationFrame(step); else el.textContent = fmt(target);
     }
     requestAnimationFrame(step);
+  }
+
+  /* 히어로 제작 흐름 카드: 단계 자동 순환 */
+  var loopItems = document.querySelectorAll('.loop li');
+  var loopBar = document.querySelector('.loop-bar i');
+  if (loopItems.length && !reduce) {
+    var li = 0;
+    function tickLoop() {
+      loopItems.forEach(function (x, i) { x.classList.toggle('on', i === li); });
+      if (loopBar) { loopBar.style.transition = 'none'; loopBar.style.width = '0'; void loopBar.offsetWidth; loopBar.style.transition = ''; loopBar.style.width = '100%'; }
+      li = (li + 1) % loopItems.length;
+    }
+    tickLoop();
+    window.setInterval(tickLoop, 1900);
+  } else {
+    loopItems.forEach(function (x) { x.classList.add('on'); });
   }
   if ('IntersectionObserver' in window) {
     var cio = new IntersectionObserver(function (entries) {
